@@ -1,0 +1,11 @@
+version: '3.1'
+
+services:
+  mariadb:
+    image: mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: 9wokIAydr91j9bw0qHyqDcyIy
+    volumes:
+      - /home/lsmith/Docker/volumes/mariadb:/var/lib/mysql
+    ports:
+      - 3306:3306
