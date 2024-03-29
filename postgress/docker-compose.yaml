@@ -1,0 +1,22 @@
+version: "3.1"
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: Blue1234
+    volumes:
+      - /home/lsmith/Docker/volumes/postgres:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+  pgvector-setup:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: yourPasswordHere # Ensure this matches the password above
+    volumes:
+      - ./pgvector-setup:/docker-entrypoint-initdb.d
+      - /home/lsmith/Docker/volumes/postgres:/var/lib/postgresql/data
+    depends_on:
+      - postgres
+    command: ["postgres", "-c", "shared_preload_libraries=pgvector"]
